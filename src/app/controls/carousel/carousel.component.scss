@@ -1,0 +1,16 @@
+:host {
+  display: flex;
+  column-gap: 10px;
+  font-size: 20px;
+  background-color: #97e7a3;
+  align-items: center;
+}
+
+.button {
+  padding: 5px 20px;
+  background-color: #1eb434;
+}
+.carousel {
+  min-width: 150px;
+  text-align: center;
+}

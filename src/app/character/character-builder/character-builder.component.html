@@ -1,0 +1,19 @@
+<form [formGroup]="form" class="form" (ngSubmit)="onSubmit()">
+  <app-carousel formControlName="hat" [itemList]="hats"></app-carousel>
+  <app-carousel formControlName="eyeColor" [itemList]="eyeColors"></app-carousel>
+  <app-carousel formControlName="body" [itemList]="bodies"></app-carousel>
+  <app-carousel formControlName="legs" [itemList]="legs"></app-carousel>
+  <app-carousel formControlName="foot" [itemList]="foots"></app-carousel>
+  <button type="submit">Submit</button>
+  <button (click)="randomizeCharacter()">Random</button>
+</form>
+
+<svg viewBox="0 0 160 480" width="100%" class="character__view view">
+  <use x="0" y="0" class="view__basic" xlink:href="/assets/sprites/character-builder-sprite.svg#character_default"></use>
+  <use y="-210" class="view__head" [attr.xlink:href]="spritePath + this.form.controls['hat'].value"></use>
+  <use y="-180" [attr.xlink:href]="spritePath + 'eye-' + this.form.controls['eyeColor'].value"></use>
+  <use x="0" y="0" class="view__body" [attr.xlink:href]="spritePath + this.form.controls['body'].value"></use>
+  <use x="0" y="160" [attr.xlink:href]="spritePath + this.form.controls['legs'].value"></use>
+  <use x="0" y="160" [attr.xlink:href]="spritePath + this.form.controls['foot'].value"></use>
+</svg>
+

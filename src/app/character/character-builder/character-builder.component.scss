@@ -1,0 +1,19 @@
+:host {
+  display: flex;
+  margin: 100px;
+  justify-content: space-evenly;
+}
+
+.character__view {
+  position: relative;
+  align-items: center;
+  height: 500px;
+  width: max-content;
+  padding: 30px;
+  background-color: #85ced5;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 15px;
+}
