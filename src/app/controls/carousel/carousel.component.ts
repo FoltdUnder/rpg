@@ -12,9 +12,9 @@ import {ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/forms";
   }]
 })
 export class CarouselComponent implements OnInit, ControlValueAccessor {
-  value: string = '';
   currentItem: number = 0;
 
+  @Input() value: string = '';
   @Input() itemList: string[] = [];
 
 
@@ -38,7 +38,8 @@ export class CarouselComponent implements OnInit, ControlValueAccessor {
 
   onChange(_: any) {}
 
-  writeValue(value: any) {
+  writeValue(value: string) {
+    this.currentItem = this.itemList.indexOf(value);
     this.value = value[this.currentItem];
   }
 

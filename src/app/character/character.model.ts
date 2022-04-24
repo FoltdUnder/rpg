@@ -15,6 +15,13 @@ export type Foots = 'none' | 'sandals' | 'sneakers' | 'boots';
 
 
 
+
+export const HATS: Hats[] = ['none', 'hat', 'cap', 'turban'];
+export const EYE_COLORS: EyeColor[] = ['none', 'blue', 'brown', 'green'];
+export const BODIES: Body[] = ['none', 'undershirt', 'jacket', 't-shirt'];
+export const LEGS: Legs[] = ['none', 'pants', 'shorts', 'underpants'];
+export const FOOTS: Foots[] = ['none', 'sandals', 'sneakers', 'boots'];
+
 export interface CharacterBuilder {
   hats: string[],
   eyeColors: string[],
@@ -30,11 +37,4 @@ export interface CharacterBuilder {
 
 
 
-
-
-export const HATS = ['none', 'hat', 'cap', 'turban'];
-export const EYE_COLORS = ['none', 'blue', 'brown', 'green'];
-export const BODIES = ['none', 'undershirt', 'jacket', 't-shirt'];
-export const LEGS = ['none', 'pants', 'shorts', 'underpants'];
-export const FOOTS = ['none', 'sandals', 'sneakers', 'boots'];
 
