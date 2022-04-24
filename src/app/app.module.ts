@@ -13,12 +13,12 @@ import { environment } from '../environments/environment';
 
 const routes: Routes = [
   {
-    path: 'character-builder',
-    loadChildren: () => import('./character/character-builder/character-builder.module').then(m => m.CharacterBuilderModule),
+    path: 'character',
+    loadChildren: () => import('./character/character.module').then(m => m.CharacterModule),
   },
   {
     path: '**',
-    redirectTo: '/character-builder'
+    redirectTo: '/character'
   }
 ];
 
@@ -38,9 +38,9 @@ const routes: Routes = [
       }
     }),
     TuiRootModule,
-      BrowserAnimationsModule,
-      TuiDialogModule,
-      StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    BrowserAnimationsModule,
+    TuiDialogModule,
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
 ],
   providers: [{provide: TUI_SANITIZER, useClass: NgDompurifySanitizer}],
   bootstrap: [AppComponent]
