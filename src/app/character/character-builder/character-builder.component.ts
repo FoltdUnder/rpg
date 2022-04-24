@@ -21,13 +21,13 @@ export class CharacterBuilderComponent implements OnInit {
   readonly foots = FOOTS;
   form!: FormGroup;
 
-  constructor(private fb: FormBuilder,
+  constructor(private formBuilder: FormBuilder,
               public store: Store<CharacterState>) {
   }
 
   ngOnInit() {
     const storeSubscription = this.store.pipe(select(selectCharacterState)).subscribe((characterState) => {
-      this.form = this.fb.group(characterState);
+      this.form = this.formBuilder.group(characterState);
     });
     storeSubscription.unsubscribe();
   }
