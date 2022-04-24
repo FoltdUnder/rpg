@@ -1,9 +1,10 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
-import {BODIES, EYE_COLORS, FOOTS, HATS, LEGS} from '../character.model';
-import {Store} from '@ngrx/store';
+import {FormBuilder, FormGroup} from '@angular/forms';
+import {BODIES, Character, EYE_COLORS, FOOTS, HATS, LEGS} from '../character.model';
+import {select, Store} from '@ngrx/store';
 import {CharacterActions} from '../action-types';
 import {CharacterState} from '../reducers';
+import {selectCharacterState} from '../character.selectors';
 
 @Component({
   selector: 'app-character-builder',
@@ -13,30 +14,25 @@ import {CharacterState} from '../reducers';
 })
 export class CharacterBuilderComponent implements OnInit {
   readonly spritePath = '/assets/sprites/character-builder-sprite.svg#';
-  form!: FormGroup;
   readonly hats = HATS;
   readonly eyeColors = EYE_COLORS;
   readonly bodies = BODIES;
   readonly legs = LEGS;
   readonly foots = FOOTS;
-
+  form!: FormGroup;
 
   constructor(private fb: FormBuilder,
               public store: Store<CharacterState>) {
   }
 
   ngOnInit() {
-    this.form = this.fb.group({
-      hat: new FormControl(''),
-      eyeColor: new FormControl(''),
-      body: new FormControl(''),
-      legs: new FormControl(''),
-      foot: new FormControl(''),
+    const storeSubscription = this.store.pipe(select(selectCharacterState)).subscribe((characterState) => {
+      this.form = this.fb.group(characterState);
     });
+    storeSubscription.unsubscribe();
   }
 
   onSubmit() {
-    console.log(this.form.value);
 
     this.store.dispatch(
       CharacterActions.LocalSaveCharacter(this.form.value)
@@ -44,6 +40,15 @@ export class CharacterBuilderComponent implements OnInit {
   }
 
   randomizeCharacter() {
-
+    this.form.patchValue({
+      hat: this.hats[Math.floor(Math.random() * this.hats.length)],
+      eyeColor: this.eyeColors[Math.floor(Math.random() * this.eyeColors.length)],
+      body: this.bodies[Math.floor(Math.random() * this.bodies.length)],
+      legs: this.legs[Math.floor(Math.random() * this.legs.length)],
+      foot: this.foots[Math.floor(Math.random() * this.foots.length)],
+    });
+    this.store.dispatch(
+      CharacterActions.LocalSaveCharacter(this.form.value)
+    )
   }
 }
