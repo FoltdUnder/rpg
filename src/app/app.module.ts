@@ -13,6 +13,10 @@ import { environment } from '../environments/environment';
 
 const routes: Routes = [
   {
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule),
+  },
+  {
     path: 'character',
     loadChildren: () => import('./character/character.module').then(m => m.CharacterModule),
   },
