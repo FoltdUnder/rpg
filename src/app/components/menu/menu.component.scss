@@ -1,0 +1,14 @@
+.menu {
+  display: flex;
+  position: fixed;
+  flex-direction: column;
+  min-width: 150px;
+  padding-top: 100px;
+  height: 100vh;
+  background-color: #b0dbde;
+}
+.menu__link {
+  padding: 15px 0;
+  text-decoration: none;
+  color: #4d6165;
+}

@@ -1,6 +1,6 @@
 import { NgDompurifySanitizer } from "@tinkoff/ng-dompurify";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { TuiRootModule, TuiDialogModule, TUI_SANITIZER } from "@taiga-ui/core";
+import {TuiRootModule, TuiDialogModule, TUI_SANITIZER, TuiSvgModule} from '@taiga-ui/core';
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 
@@ -10,6 +10,7 @@ import {reducers, metaReducers} from "./reducers";
 import {RouterModule, Routes} from "@angular/router";
 import {StoreDevtoolsModule} from "@ngrx/store-devtools";
 import { environment } from '../environments/environment';
+import { MenuComponent } from './components/menu/menu.component';
 
 const routes: Routes = [
   {
@@ -28,7 +29,8 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MenuComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,8 +46,9 @@ const routes: Routes = [
     TuiRootModule,
     BrowserAnimationsModule,
     TuiDialogModule,
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-],
+    StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
+    TuiSvgModule,
+  ],
   providers: [{provide: TUI_SANITIZER, useClass: NgDompurifySanitizer}],
   bootstrap: [AppComponent]
 })
