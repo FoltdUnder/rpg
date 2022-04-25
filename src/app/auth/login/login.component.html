@@ -1,1 +1,29 @@
-<p>login works!</p>
+<div class="loginPage">
+  <h1>Login</h1>
+  <form class="loginPage__form" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <tui-input formControlName="login">
+      Type a login
+      <input
+        tuiTextfield
+        type="text"
+      />
+    </tui-input>
+
+    <tui-input-password
+      formControlName="password"
+    >
+      Type a password
+      <input
+        tuiTextfield
+        placeholder="Make it secure!"
+      />
+    </tui-input-password>
+    <button
+      tuiButton
+      type="submit"
+      [disabled]="!form.valid"
+    >
+      Sign in
+    </button>
+  </form>
+</div>

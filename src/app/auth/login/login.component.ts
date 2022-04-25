@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Store} from '@ngrx/store';
+import {AuthService} from '../services/auth.service';
+import {tap} from 'rxjs';
+import {AuthActions} from '../action-types';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -6,10 +12,36 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  form!: FormGroup;
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor(private formBuilder: FormBuilder,
+              private store: Store,
+              private router: Router,
+              private authService: AuthService) {
   }
 
+  ngOnInit(): void {
+    this.form = this.formBuilder.group({
+      login: ['tempo', [Validators.required]],
+      password: ['pass', [Validators.required]]
+    });
+  }
+
+  onSubmit() {
+    const {login, password} = this.form.value;
+    this.authService.login(login, password).pipe(
+      tap(user => {
+        console.log(user);
+        this.store.dispatch(AuthActions.login());
+        this.router.navigateByUrl('/character');
+      })
+    ).subscribe({
+        next: (user) => {
+          console.log('next');
+          this.store.dispatch(AuthActions.loginSuccess({user}));
+        },
+        error: (error) => this.store.dispatch(AuthActions.loginFailure(error))
+      }
+    );
+  }
 }
