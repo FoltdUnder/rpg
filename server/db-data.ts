@@ -1,3 +1,12 @@
+
+export const USERS = {
+  1: {
+    id: 1,
+    login: 'tempo',
+    password: 'pass'
+  }
+};
+
 interface Class {
   name: string;
 }
@@ -15,3 +24,13 @@ export const CHARACTER_BUILDER = {
   legs: LEGS,
   foots: FOOTS
 };
+
+
+export function authenticate(login: string, password: string) {
+  const user: any = Object.values(USERS).find(user => user.login === login);
+
+  if (user && user.password == password) {
+    return user;
+  }
+  return null;
+}
