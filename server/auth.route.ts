@@ -12,7 +12,7 @@ export function loginUser(req: Request, res: Response) {
     res.status(200).json({id:user.id, login: user.login});
   }
   else {
-    res.sendStatus(403);
+    res.sendStatus(401);
   }
 
 }
