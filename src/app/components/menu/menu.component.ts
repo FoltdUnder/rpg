@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import {select, Store} from '@ngrx/store';
 import {Observable} from 'rxjs';
-import {isLoggedIn, isLoggedOut, selectAuthState} from '../../auth/auth.selectors';
+import {isLoggedIn, isLoggedOut} from '../../auth/auth.selectors';
 
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.scss']
+  styleUrls: ['./menu.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MenuComponent implements OnInit {
   isLoggedOut$ = new Observable<boolean>()

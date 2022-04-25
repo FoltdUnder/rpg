@@ -13,6 +13,7 @@ import { environment } from '../environments/environment';
 import { MenuComponent } from './components/menu/menu.component';
 import {AuthModule} from './auth/auth.module';
 import {LoginComponent} from './auth/login/login.component';
+import {AuthGuard} from './auth/auth.guard';
 
 const routes: Routes = [
   {
@@ -22,6 +23,7 @@ const routes: Routes = [
   {
     path: 'character',
     loadChildren: () => import('./character/character.module').then(m => m.CharacterModule),
+    canActivate: [AuthGuard]
   },
   {
     path: '**',
