@@ -1,22 +1,21 @@
-<a routerLink="/">to app</a>
+<div class="characterBuildPage">
+  <form [formGroup]="form" class="form" (ngSubmit)="onSubmit()">
+    <app-carousel formControlName="hat" [itemList]="hats" [value]="form.controls['hat'].value"></app-carousel>
+    <app-carousel formControlName="eyeColor" [itemList]="eyeColors" [value]="form.controls['eyeColor'].value"></app-carousel>
+    <app-carousel formControlName="body" [itemList]="bodies" [value]="form.controls['body'].value"></app-carousel>
+    <app-carousel formControlName="legs" [itemList]="legs" [value]="form.controls['legs'].value"></app-carousel>
+    <app-carousel formControlName="foot" [itemList]="foots" [value]="form.controls['foot'].value"></app-carousel>
+    <button type="submit">Submit</button>
+    <button (click)="randomizeCharacter()">Random</button>
+  </form>
 
-
-<form [formGroup]="form" class="form" (ngSubmit)="onSubmit()">
-  <app-carousel formControlName="hat" [itemList]="hats" [value]="form.controls['hat'].value"></app-carousel>
-  <app-carousel formControlName="eyeColor" [itemList]="eyeColors" [value]="form.controls['eyeColor'].value"></app-carousel>
-  <app-carousel formControlName="body" [itemList]="bodies" [value]="form.controls['body'].value"></app-carousel>
-  <app-carousel formControlName="legs" [itemList]="legs" [value]="form.controls['legs'].value"></app-carousel>
-  <app-carousel formControlName="foot" [itemList]="foots" [value]="form.controls['foot'].value"></app-carousel>
-  <button type="submit">Submit</button>
-  <button (click)="randomizeCharacter()">Random</button>
-</form>
-
-<svg viewBox="0 0 160 480" width="100%" class="character__view view">
-  <use x="0" y="0" class="view__basic" xlink:href="/assets/sprites/character-builder-sprite.svg#character_default"></use>
-  <use y="-210" class="view__head" [attr.xlink:href]="spritePath + this.form.controls['hat'].value"></use>
-  <use y="-180" [attr.xlink:href]="spritePath + 'eye-' + this.form.controls['eyeColor'].value"></use>
-  <use x="0" y="0" class="view__body" [attr.xlink:href]="spritePath + this.form.controls['body'].value"></use>
-  <use x="0" y="160" [attr.xlink:href]="spritePath + this.form.controls['legs'].value"></use>
-  <use x="0" y="160" [attr.xlink:href]="spritePath + this.form.controls['foot'].value"></use>
-</svg>
+  <svg viewBox="0 0 160 480" width="100%" class="character__view view">
+    <use x="0" y="0" class="view__basic" xlink:href="/assets/sprites/character-builder-sprite.svg#character_default"></use>
+    <use y="-210" class="view__head" [attr.xlink:href]="spritePath + this.form.controls['hat'].value"></use>
+    <use y="-180" [attr.xlink:href]="spritePath + 'eye-' + this.form.controls['eyeColor'].value"></use>
+    <use x="0" y="0" class="view__body" [attr.xlink:href]="spritePath + this.form.controls['body'].value"></use>
+    <use x="0" y="160" [attr.xlink:href]="spritePath + this.form.controls['legs'].value"></use>
+    <use x="0" y="160" [attr.xlink:href]="spritePath + this.form.controls['foot'].value"></use>
+  </svg>
+</div>
 
