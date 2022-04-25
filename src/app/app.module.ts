@@ -11,11 +11,13 @@ import {RouterModule, Routes} from "@angular/router";
 import {StoreDevtoolsModule} from "@ngrx/store-devtools";
 import { environment } from '../environments/environment';
 import { MenuComponent } from './components/menu/menu.component';
+import {AuthModule} from './auth/auth.module';
+import {LoginComponent} from './auth/login/login.component';
 
 const routes: Routes = [
   {
-    path: 'auth',
-    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule),
+    path: 'login',
+    component: LoginComponent,
   },
   {
     path: 'character',
@@ -48,6 +50,7 @@ const routes: Routes = [
     TuiDialogModule,
     StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
     TuiSvgModule,
+    AuthModule
   ],
   providers: [{provide: TUI_SANITIZER, useClass: NgDompurifySanitizer}],
   bootstrap: [AppComponent]
