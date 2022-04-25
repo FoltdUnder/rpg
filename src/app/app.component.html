@@ -1,5 +1,5 @@
 <tui-root>
-  <app-menu></app-menu>
+  <app-menu *ngIf="isLoggedIn$ | async"></app-menu>
 
   <router-outlet></router-outlet>
 
