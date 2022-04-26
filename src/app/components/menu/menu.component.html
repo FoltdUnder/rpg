@@ -1,5 +1,11 @@
 <div class="menu" *ngIf="isLoggedIn$ | async">
-    <a class="menu__link" routerLink="/character/character-builder">
+    <a class="menu__link" routerLink="/character/list">
+      <tui-svg
+        src="tuiIconViewListLarge"
+      ></tui-svg>
+      Character list
+    </a>
+  <a class="menu__link" routerLink="/character/builder">
       <tui-svg
         src="tuiIconPaintLarge"
       ></tui-svg>
