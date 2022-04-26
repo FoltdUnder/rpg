@@ -1,15 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {CharacterBuilderComponent} from './character-builder/character-builder.component';
+import {CharacterListComponent} from './character-list/character-list.component';
 
 const routes: Routes = [
   {
-    path: 'character-builder',
+    path: 'builder',
     component: CharacterBuilderComponent
   },
   {
+    path: 'list',
+    component: CharacterListComponent
+  },
+
+  {
     path: '**',
-    redirectTo: 'character-builder'
+    redirectTo: 'list'
   }
 ];
 
