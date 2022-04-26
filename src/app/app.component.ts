@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
 import {select, Store} from '@ngrx/store';
 import {isLoggedIn} from './auth/auth.selectors';
+import {AuthActions} from './auth/action-types';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +16,12 @@ export class AppComponent implements OnInit{
   constructor(private store: Store) {
   }
   ngOnInit(): void {
+    const userProfile = localStorage.getItem("user");
+
+    if (userProfile) {
+      this.store.dispatch(AuthActions.loginSuccess({user: JSON.parse(userProfile)}));
+    }
+
     this.isLoggedIn$ = this.store
       .pipe(
         select(isLoggedIn)

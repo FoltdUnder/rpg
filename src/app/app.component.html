@@ -1,6 +1,8 @@
 <tui-root>
   <app-menu *ngIf="isLoggedIn$ | async"></app-menu>
 
-  <router-outlet></router-outlet>
+  <div class="content">
+    <router-outlet></router-outlet>
+  </div>
 
 </tui-root>
