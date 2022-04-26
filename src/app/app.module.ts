@@ -14,6 +14,7 @@ import { MenuComponent } from './components/menu/menu.component';
 import {AuthModule} from './auth/auth.module';
 import {LoginComponent} from './auth/login/login.component';
 import {AuthGuard} from './auth/auth.guard';
+import {EffectsModule} from '@ngrx/effects';
 
 const routes: Routes = [
   {
@@ -51,6 +52,7 @@ const routes: Routes = [
     BrowserAnimationsModule,
     TuiDialogModule,
     StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
+    EffectsModule.forRoot([]),
     TuiSvgModule,
     AuthModule
   ],

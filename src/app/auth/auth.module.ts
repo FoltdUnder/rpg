@@ -9,6 +9,8 @@ import {StoreModule} from '@ngrx/store';
 import * as fromAuth from './reducers/auth.reducer';
 import {AuthService} from './services/auth.service';
 import {HttpClientModule} from '@angular/common/http';
+import {EffectsModule} from '@ngrx/effects';
+import {AuthEffects} from './auth.effects';
 
 
 @NgModule({
@@ -24,6 +26,7 @@ import {HttpClientModule} from '@angular/common/http';
     TuiInputPasswordModule,
     TuiButtonModule,
     StoreModule.forFeature(fromAuth.authFeatureKey, fromAuth.authReducer),
+    EffectsModule.forFeature([AuthEffects])
   ],
   providers: [
     AuthService
