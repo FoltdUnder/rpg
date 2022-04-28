@@ -1,5 +1,6 @@
 
 export interface Character {
+  id?: number;
   hat: Hats;
   eyeColor: EyeColor;
   body: Body;

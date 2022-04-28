@@ -31,15 +31,11 @@ export class LoginComponent implements OnInit {
     const {login, password} = this.form.value;
     this.authService.login(login, password).pipe(
       tap(user => {
-        console.log(user);
         this.store.dispatch(AuthActions.login());
         this.router.navigateByUrl('/character');
       })
     ).subscribe({
-        next: (user) => {
-          console.log('next');
-          this.store.dispatch(AuthActions.loginSuccess({user}));
-        },
+        next: (user) => this.store.dispatch(AuthActions.loginSuccess({user})),
         error: (error) => this.store.dispatch(AuthActions.loginFailure(error))
       }
     );
