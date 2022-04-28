@@ -2,13 +2,15 @@
 export interface Character {
   id?: number;
   name: string;
+  view: CharacterView
+}
+export interface CharacterView {
   hat: Hats;
   eyeColor: EyeColor;
   body: Body;
   legs: Legs;
   foot: Foots;
 }
-
 export type Body = 'none' | 'undershirt' | 'jacket' | 't-shirt';
 export type Hats = 'none' | 'hat' | 'cap' | 'turban';
 export type EyeColor = 'none' | 'blue' | 'green' | 'brown';

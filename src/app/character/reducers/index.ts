@@ -12,22 +12,21 @@ export interface CharacterState extends Character{
 
 export const initialCharacterState: CharacterState = {
   name: 'noname',
-  hat: 'none',
-  eyeColor: 'none',
-  body: 'none',
-  legs: 'none',
-  foot: 'none',
+  view: {
+    hat: 'none',
+    eyeColor: 'none',
+    body: 'none',
+    legs: 'none',
+    foot: 'none',
+  }
 }
 
 
 export const characterReducer = createReducer(
   initialCharacterState,
-  on(CharacterActions.LocalSaveCharacter, (state, action) => ({
-    name: action.name,
-    hat: action.hat,
-    eyeColor: action.eyeColor,
-    body: action.body,
-    legs: action.legs,
-    foot: action.foot
-  })),
+  on(CharacterActions.LocalSaveCharacter, (state, action) =>  ({
+      name: action.name,
+      view: action.view
+    })
+  ),
 );

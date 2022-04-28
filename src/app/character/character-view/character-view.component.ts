@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
-import {Character} from '../character.model';
+import {CharacterView} from '../character.model';
 
 @Component({
   selector: 'app-character-view',
@@ -9,13 +9,12 @@ import {Character} from '../character.model';
 })
 export class CharacterViewComponent implements OnInit {
   readonly spritePath = '/assets/sprites/character-builder-sprite.svg#';
-  @Input() view: Character = {
+  @Input() view: CharacterView = {
     body: 'none',
     eyeColor: 'none',
     foot: 'none',
     hat: 'none',
     legs: 'none',
-    name: 'noname'
   };
 
   constructor() {
