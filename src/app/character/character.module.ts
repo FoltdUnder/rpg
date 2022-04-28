@@ -8,24 +8,23 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ControlsModule} from '../controls/controls.module';
 import {CharacterBuilderComponent} from './character-builder/character-builder.component';
 import {TuiInputModule} from '@taiga-ui/kit';
-import { CharacterViewComponent } from './character-view/character-view.component';
+import {CharacterViewModule} from './character-view/character-view.module';
 
 
 @NgModule({
   declarations: [
     CharacterBuilderComponent,
-    CharacterViewComponent
   ],
-    imports: [
-        CommonModule,
-        CharacterRoutingModule,
-        FormsModule,
-        ReactiveFormsModule,
-        ControlsModule,
-        StoreModule.forFeature(fromCharacter.characterFeatureKey, fromCharacter.characterReducer),
-        TuiInputModule,
-
-
-    ]
+  exports: [],
+  imports: [
+    CommonModule,
+    CharacterRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    ControlsModule,
+    StoreModule.forFeature(fromCharacter.characterFeatureKey, fromCharacter.characterReducer),
+    TuiInputModule,
+    CharacterViewModule
+  ]
 })
 export class CharacterModule { }
