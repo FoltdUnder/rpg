@@ -1,0 +1,8 @@
+<svg viewBox="0 0 160 480" width="100%" class="character__view view">
+  <use x="0" y="0" xlink:href="/assets/sprites/character-builder-sprite.svg#character_default"></use>
+  <use y="-210" [attr.xlink:href]="spritePath + view.hat"></use>
+  <use y="-180" [attr.xlink:href]="spritePath + 'eye-' + view.eyeColor"></use>
+  <use [attr.xlink:href]="spritePath + view.body"></use>
+  <use y="160" [attr.xlink:href]="spritePath + view.legs"></use>
+  <use y="160" [attr.xlink:href]="spritePath + view.foot"></use>
+</svg>

@@ -13,7 +13,6 @@ import {selectCharacterState} from '../character.selectors';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CharacterBuilderComponent implements OnInit {
-  readonly spritePath = '/assets/sprites/character-builder-sprite.svg#';
   readonly hats = HATS;
   readonly eyeColors = EYE_COLORS;
   readonly bodies = BODIES;
