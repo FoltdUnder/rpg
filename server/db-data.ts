@@ -7,7 +7,8 @@ interface User {
 }
 
 export interface Character {
-  id: number
+  id: number;
+  name: string;
   hat: string;
   eyeColor: string;
   body: string;
@@ -23,6 +24,7 @@ export const USERS: {[key: number]: User} = {
     characters: {
       1: {
         id: 1,
+        name: 'Лёлик',
         hat: 'hat',
         eyeColor: 'blue',
         body: 'jacket',
@@ -31,6 +33,7 @@ export const USERS: {[key: number]: User} = {
       },
       2: {
         id: 2,
+        name: 'Болик',
         hat: 'hat',
         eyeColor: 'green',
         body: 'jacket',

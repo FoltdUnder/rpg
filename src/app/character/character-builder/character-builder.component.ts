@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import {BODIES, Character, EYE_COLORS, FOOTS, HATS, LEGS} from '../character.model';
+import {BODIES, EYE_COLORS, FOOTS, HATS, LEGS} from '../character.model';
 import {select, Store} from '@ngrx/store';
 import {CharacterActions} from '../action-types';
 import {CharacterState} from '../reducers';
@@ -47,8 +47,5 @@ export class CharacterBuilderComponent implements OnInit {
       legs: this.legs[Math.floor(Math.random() * this.legs.length)],
       foot: this.foots[Math.floor(Math.random() * this.foots.length)],
     });
-    this.store.dispatch(
-      CharacterActions.LocalSaveCharacter(this.form.value)
-    )
   }
 }

@@ -1,11 +1,18 @@
 <div class="characterBuildPage">
   <form [formGroup]="form" class="form" (ngSubmit)="onSubmit()">
+    <tui-input formControlName="name">
+      Type a name
+      <input
+        tuiTextfield
+        type="text"
+      />
+    </tui-input>
     <app-carousel formControlName="hat" [itemList]="hats" [value]="form.controls['hat'].value"></app-carousel>
     <app-carousel formControlName="eyeColor" [itemList]="eyeColors" [value]="form.controls['eyeColor'].value"></app-carousel>
     <app-carousel formControlName="body" [itemList]="bodies" [value]="form.controls['body'].value"></app-carousel>
     <app-carousel formControlName="legs" [itemList]="legs" [value]="form.controls['legs'].value"></app-carousel>
     <app-carousel formControlName="foot" [itemList]="foots" [value]="form.controls['foot'].value"></app-carousel>
-    <button type="submit">Submit</button>
+    <button [disabled]="!form.valid" type="submit">Submit</button>
     <button (click)="randomizeCharacter()">Random</button>
   </form>
 

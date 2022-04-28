@@ -1,5 +1,5 @@
 import {Request, Response} from 'express';
-import {Character, USERS} from './db-data';
+import {USERS} from './db-data';
 
 export function getCharacterList(req: Request, res: Response) {
   console.log("Retrieving character list data ...");
