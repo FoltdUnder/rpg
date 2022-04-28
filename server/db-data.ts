@@ -1,9 +1,43 @@
 
-export const USERS = {
+interface User {
+  id: number;
+  login: string;
+  password: string;
+  characters: {[key: number]: Character}
+}
+
+export interface Character {
+  id: number
+  hat: string;
+  eyeColor: string;
+  body: string;
+  legs: string;
+  foot: string;
+}
+
+export const USERS: {[key: number]: User} = {
   1: {
     id: 1,
     login: 'tempo',
-    password: 'pass'
+    password: 'pass',
+    characters: {
+      1: {
+        id: 1,
+        hat: 'hat',
+        eyeColor: 'blue',
+        body: 'jacket',
+        legs: 'none',
+        foot: 'boots',
+      },
+      2: {
+        id: 2,
+        hat: 'hat',
+        eyeColor: 'green',
+        body: 'jacket',
+        legs: 'none',
+        foot: 'sandals',
+      }
+    }
   }
 };
 
@@ -16,14 +50,6 @@ export const EYE_COLORS = ['none', 'blue', 'brown', 'green'];
 export const BODIES = ['none', 'undershirt', 'jacket', 't-shirt'];
 export const LEGS = ['none', 'pants', 'shorts', 'underpants'];
 export const FOOTS = ['none', 'sandals', 'sneakers', 'boots'];
-
-export const CHARACTER_BUILDER = {
-  hats: HATS,
-  eyeColor: EYE_COLORS,
-  bodies: BODIES,
-  legs: LEGS,
-  foots: FOOTS
-};
 
 
 export function authenticate(login: string, password: string) {
