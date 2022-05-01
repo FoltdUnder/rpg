@@ -14,12 +14,12 @@ export class CharacterHttpService {
 
   constructor(private httpClient: HttpClient) { }
 
-  createCharacter(character: SaveCharacter): Observable<Character> {
-    return this.httpClient.post<Character>('api/createCharacter', {character: character});
+  createCharacter(character: SaveCharacter): Observable<Boolean> {
+    return this.httpClient.post<Boolean>('api/character', {character: character});
   }
 
   getCharacterList(): Observable<Character[]> {
-    return this.httpClient.get<Character[]>('/api/getCharacterList', {
+    return this.httpClient.get<Character[]>('/api/characters', {
       params: new HttpParams().set('userId', JSON.parse(localStorage.getItem('user')!).id.toString())
     })
       .pipe(

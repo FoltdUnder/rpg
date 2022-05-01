@@ -2,7 +2,7 @@ import * as express from 'express';
 import {Application} from 'express';
 
 import {loginUser} from './auth.route';
-import {getCharacterList, } from './character.route';
+import {createCharacter, getCharacterList,} from './character.route';
 
 const bodyParser = require('body-parser');
 
@@ -14,9 +14,9 @@ app.disable('etag');
 
 app.use(bodyParser.json());
 
-app.route('/api/getCharacterList').get(getCharacterList);
+app.route('/api/characters').get(getCharacterList);
 
-// app.route('/api/createCharacter').post(createCharacter);
+app.route('/api/character').post(createCharacter);
 
 app.route('/api/login').post(loginUser);
 

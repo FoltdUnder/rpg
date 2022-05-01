@@ -1,5 +1,5 @@
 import {Request, Response} from 'express';
-import {USERS} from './db-data';
+import {Character, USERS} from './db-data';
 
 export function getCharacterList(req: Request, res: Response) {
   console.log("Retrieving character list data ...");
@@ -11,14 +11,11 @@ export function getCharacterList(req: Request, res: Response) {
 
 }
 
-// export function createCharacter(req: Request, res: Response) {
-//   console.log('Saving character ...');
-//
-//   const userId: number = +req.params['userId'];
-//   const newCharacter: Character = {
-//     ...req.params['character'],
-//     id: Object.keys(USERS[userId].characters).length,
-//   };
-//
-//   USERS[userId].characters[newCharacter.id] = newCharacter;
-// }
+export function createCharacter(req: Request, res: Response) {
+  console.log('Saving character ...');
+
+  const userId: number = +req.params['userId'];
+  console.log(req.params['character']);
+
+  // USERS[userId].characters[newCharacter.id] = newCharacter;
+}
