@@ -9,13 +9,16 @@ interface User {
 export interface Character {
   id: number;
   name: string;
+  view: CharacterView;
+}
+
+interface CharacterView {
   hat: string;
   eyeColor: string;
   body: string;
   legs: string;
   foot: string;
 }
-
 export const USERS: {[key: number]: User} = {
   1: {
     id: 1,
@@ -25,20 +28,24 @@ export const USERS: {[key: number]: User} = {
       1: {
         id: 1,
         name: 'Лёлик',
-        hat: 'hat',
-        eyeColor: 'blue',
-        body: 'jacket',
-        legs: 'none',
-        foot: 'boots',
+        view: {
+          hat: 'hat',
+          eyeColor: 'blue',
+          body: 'jacket',
+          legs: 'none',
+          foot: 'boots',
+        }
       },
       2: {
         id: 2,
         name: 'Болик',
-        hat: 'hat',
-        eyeColor: 'green',
-        body: 'jacket',
-        legs: 'none',
-        foot: 'sandals',
+        view: {
+          hat: 'hat',
+          eyeColor: 'green',
+          body: 'jacket',
+          legs: 'none',
+          foot: 'sandals',
+        }
       }
     }
   }
