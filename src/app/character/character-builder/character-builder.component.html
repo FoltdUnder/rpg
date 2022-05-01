@@ -1,5 +1,5 @@
 <div class="characterBuildPage">
-  <form [formGroup]="form" class="form" (ngSubmit)="onSubmit()">
+  <form [formGroup]="form" class="characterBuildPage__form" (ngSubmit)="onSubmit()">
     <tui-input formControlName="name">
       Type a name
       <input
@@ -18,6 +18,6 @@
     <button (click)="randomizeCharacter()">Random</button>
   </form>
 
-  <app-character-view [view]="form.get('view')?.value"></app-character-view>
+  <app-character-view class="characterBuildPage__view" [view]="form.get('view')?.value"></app-character-view>
 </div>
 

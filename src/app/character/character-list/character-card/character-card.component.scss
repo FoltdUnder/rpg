@@ -1,0 +1,11 @@
+.characterCard {
+  display: flex;
+  justify-content: space-between;
+  height: 150px;
+  width: 100%;
+  border: solid 2px #bad0d0;
+  border-radius: 10px;
+  padding: 15px;
+  box-sizing: border-box;
+  min-width: 200px;
+}

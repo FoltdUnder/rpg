@@ -1,1 +1,7 @@
-<div *ngFor="let character of characterList$ | async">{{character.id}}</div>
+<div class="characterListPage">
+  <h2 class="characterListPage__title">Character list</h2>
+  <div class="characterListPage__list">
+    <app-character-card *ngFor="let character of characterList$ | async" [character]="character"></app-character-card>
+  </div>
+</div>
+
