@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(login, password).pipe(
       tap(user => {
         this.store.dispatch(AuthActions.login());
-        this.router.navigateByUrl('/character');
+        this.router.navigateByUrl('/character/list');
       })
     ).subscribe({
         next: (user) => this.store.dispatch(AuthActions.loginSuccess({user})),
