@@ -10,13 +10,13 @@ const bodyParser = require('body-parser');
 const app: Application = express();
 
 //todo отключение кеширования, почему приходит 304
-app.disable('etag');
+// app.disable('etag');
 
 app.use(bodyParser.json());
 
 app.route('/api/characters').get(getCharacterList);
 
-app.route('/api/character').post(createCharacter);
+app.route('/api/characters').post(createCharacter);
 
 app.route('/api/login').post(loginUser);
 

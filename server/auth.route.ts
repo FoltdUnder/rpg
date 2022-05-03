@@ -1,4 +1,4 @@
-import {authenticate} from './db-data';
+import {authenticate} from './db-helpers';
 import {Request, Response} from 'express';
 
 

@@ -1,21 +1,31 @@
 import {Request, Response} from 'express';
-import {Character, USERS} from './db-data';
+import {getDbData, setDbData} from './db-helpers';
 
 export function getCharacterList(req: Request, res: Response) {
   console.log("Retrieving character list data ...");
 
   const userId: number = +(req.query['userId'] as string);
   setTimeout(() => {
-    res.status(200).json(Object.values(USERS[userId].characters));
+    res.status(200).json(Object.values(getDbData()[userId].characters));
   }, 1000);
 
 }
 
 export function createCharacter(req: Request, res: Response) {
   console.log('Saving character ...');
+  if (!req.headers['user-id'] || req.headers['user-id'] === '0') {
+    res.sendStatus(403);
+  }
+  const userId = +req.headers['user-id']!;
+  const USERS = getDbData();
+  const newCharacter = {
+    ...req.body['character'],
+    id: ++Object.keys(USERS[+userId].characters).length
+  };
 
-  const userId: number = +req.params['userId'];
-  console.log(req.params['character']);
+  USERS[userId].characters[newCharacter.id] = newCharacter;
 
-  // USERS[userId].characters[newCharacter.id] = newCharacter;
+  setDbData(USERS);
+
+  res.status(200).json();
 }

@@ -1,3 +1,4 @@
+import * as fs from 'fs';
 
 interface User {
   id: number;
@@ -19,41 +20,6 @@ interface CharacterView {
   legs: string;
   foot: string;
 }
-export const USERS: {[key: number]: User} = {
-  1: {
-    id: 1,
-    login: 'tempo',
-    password: 'pass',
-    characters: {
-      1: {
-        id: 1,
-        name: 'Лёлик',
-        view: {
-          hat: 'hat',
-          eyeColor: 'blue',
-          body: 'jacket',
-          legs: 'none',
-          foot: 'boots',
-        }
-      },
-      2: {
-        id: 2,
-        name: 'Болик',
-        view: {
-          hat: 'hat',
-          eyeColor: 'green',
-          body: 'jacket',
-          legs: 'none',
-          foot: 'sandals',
-        }
-      }
-    }
-  }
-};
-
-interface Class {
-  name: string;
-}
 
 export const HATS = ['none', 'hat', 'cap', 'turban'];
 export const EYE_COLORS = ['none', 'blue', 'brown', 'green'];
@@ -63,10 +29,20 @@ export const FOOTS = ['none', 'sandals', 'sneakers', 'boots'];
 
 
 export function authenticate(login: string, password: string) {
-  const user: any = Object.values(USERS).find(user => user.login === login);
+  const user: any = Object.values(getDbData()).find(user => user.login === login);
 
   if (user && user.password == password) {
     return user;
   }
   return null;
+}
+
+export function getDbData(): { [key: number]: User } {
+  return JSON.parse(fs.readFileSync(__dirname + '/db-data.json',  'utf8'));
+}
+
+export function setDbData(content: { [key: number]: User }): void {
+  fs.writeFile(__dirname + '/db-data.json', JSON.stringify(content), (error) => {
+    console.log(error)
+  });
 }
