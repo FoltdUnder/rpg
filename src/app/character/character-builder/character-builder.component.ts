@@ -4,10 +4,13 @@ import {BODIES, Character, EYE_COLORS, FOOTS, HATS, LEGS} from '../character.mod
 import {select, Store} from '@ngrx/store';
 import {CharacterActions} from '../action-types';
 import {CharacterState} from '../reducers';
-import {selectCharacterState} from '../character.selectors';
 import {CharacterHttpService} from '../services/character-http.service';
-import {Subject, takeUntil, tap} from 'rxjs';
-import {selectCharacterList} from '../character-list/character-list.selectors';
+import {Subject, takeUntil} from 'rxjs';
+import {
+  selectCharacterById,
+  selectTotalCharacters
+} from '../character-list/character-list.selectors';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-character-builder',
@@ -22,9 +25,11 @@ export class CharacterBuilderComponent implements OnInit {
   readonly legs = LEGS;
   readonly foots = FOOTS;
   form!: FormGroup;
+
   constructor(private formBuilder: FormBuilder,
               private characterHttpService: CharacterHttpService,
-              private store: Store<CharacterState>) {
+              private store: Store<CharacterState>,
+              private activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit() {
@@ -38,8 +43,11 @@ export class CharacterBuilderComponent implements OnInit {
         foot: ''
       })
     })
-    const storeSubscription = this.store.pipe(select(selectCharacterState)).subscribe((characterState) => {
-      this.form.patchValue(characterState)
+    const characterId = this.activatedRoute.snapshot.params['id'];
+    const storeSubscription = this.store.pipe(select(selectCharacterById(characterId))).subscribe((character) => {
+      if (character) {
+        this.form.patchValue(character);
+      }
     });
     storeSubscription.unsubscribe();
   }
@@ -47,10 +55,10 @@ export class CharacterBuilderComponent implements OnInit {
   onSubmit() {
     const destroy$ = new Subject();
     let newCharacterId = 0;
-    this.store.pipe(select(selectCharacterList)).pipe(
+    this.store.pipe(select(selectTotalCharacters)).pipe(
       takeUntil(destroy$)
-    ).subscribe((characterList) => {
-      newCharacterId = ++characterList.length;
+    ).subscribe((total) => {
+      newCharacterId = total;
       destroy$.next(null);
       destroy$.complete();
     })

@@ -29,7 +29,6 @@ export class CharacterCardComponent implements OnInit {
   }
 
   customizeCharacter() {
-    this.store.dispatch(CharacterActions.updateCurrentCharacterStore({payload: this.character}))
     this.router.navigateByUrl('character/' + this.character.id);
   }
 }

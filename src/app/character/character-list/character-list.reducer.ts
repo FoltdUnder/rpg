@@ -10,20 +10,20 @@ export interface CharacterListState extends EntityState<Character>{
   areCharacterListLoaded: boolean;
 }
 
-export const adapter = createEntityAdapter<Character>();
+export const characterEntityAdapter = createEntityAdapter<Character>();
 
-export const initialCharacterListState = adapter.getInitialState({
+export const initialCharacterListState = characterEntityAdapter.getInitialState({
   areCharacterListLoaded: false
 });
 
 export const characterListReducer = createReducer(
   initialCharacterListState,
   on(CharacterListActions.characterListLoaded, (state, action) => {
-    return adapter.addMany(action.characterList, {...state, areCharacterListLoaded: true})
+    return characterEntityAdapter.addMany(action.characterList, {...state, areCharacterListLoaded: true})
   }),
   on(CharacterListActions.addNewCharacter, (state, action) => {
-    return adapter.addOne(action.payload, state)
-  })
+    return characterEntityAdapter.addOne(action.payload, state)
+  }),
 );
 
-export const {selectAll} = adapter.getSelectors();
+export const {selectAll, selectIds, selectEntities, selectTotal} = characterEntityAdapter.getSelectors();
