@@ -1,5 +1,5 @@
 import {Request, Response} from 'express';
-import {getDbData, setDbData} from './db-helpers';
+import {BODIES, EYE_COLORS, FOOTS, getDbData, HATS, LEGS, setDbData} from './db-helpers';
 
 export function getCharacterList(req: Request, res: Response) {
   console.log("Retrieving character list data ...");
@@ -28,4 +28,16 @@ export function createCharacter(req: Request, res: Response) {
   setDbData(USERS);
 
   res.status(200).json();
+}
+
+export function getCharacterBuilder(req: Request, res: Response) {
+  console.log('Retrieving character builder data...');
+
+  res.status(200).json({
+    hat: HATS,
+    eyeColor: EYE_COLORS,
+    body: BODIES,
+    legs: LEGS,
+    foot: FOOTS
+  })
 }
