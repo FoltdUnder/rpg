@@ -1,10 +1,12 @@
-.characterListPage__title {
-  padding-bottom: 30px;
-}
-
 .characterListPage__list {
   display: flex;
   flex-direction: column;
   width: 100%;
   row-gap: 15px;
+}
+.characterListPage__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 20px;
 }
