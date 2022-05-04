@@ -4,12 +4,12 @@ import {CharacterBuilderComponent} from './character-builder/character-builder.c
 
 const routes: Routes = [
   {
-    path: 'builder',
-    component: CharacterBuilderComponent
-  },
-  {
     path: 'list',
     loadChildren: () => import('./character-list/character-list.module').then(m => m.CharacterListModule),
+  },
+  {
+    path: ':id',
+    component: CharacterBuilderComponent
   },
   {
     path: '**',

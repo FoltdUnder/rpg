@@ -9,18 +9,20 @@ import {CharacterListEffects} from './character-list.effects';
 import {CharacterListComponent} from './character-list.component';
 import { CharacterCardComponent } from './character-card/character-card.component';
 import {CharacterViewModule} from '../character-view/character-view.module';
+import {TuiButtonModule} from '@taiga-ui/core';
 
 @NgModule({
   declarations: [
     CharacterListComponent,
     CharacterCardComponent
   ],
-  imports: [
-    CommonModule,
-    CharacterListRoutingModule,
-    StoreModule.forFeature(fromCharacter.characterListFeatureKey, fromCharacter.characterListReducer),
-    EffectsModule.forFeature([CharacterListEffects]),
-    CharacterViewModule
-  ]
+    imports: [
+        CommonModule,
+        CharacterListRoutingModule,
+        StoreModule.forFeature(fromCharacter.characterListFeatureKey, fromCharacter.characterListReducer),
+        EffectsModule.forFeature([CharacterListEffects]),
+        CharacterViewModule,
+        TuiButtonModule
+    ]
 })
 export class CharacterListModule { }
