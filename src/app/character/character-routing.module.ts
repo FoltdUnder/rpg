@@ -12,6 +12,10 @@ const routes: Routes = [
     resolve: [CharacterListResolver]
   },
   {
+    path: 'create',
+    component: CharacterBuilderComponent
+  },
+  {
     path: ':id',
     component: CharacterBuilderComponent
   },
