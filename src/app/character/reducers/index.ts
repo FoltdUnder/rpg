@@ -24,9 +24,6 @@ export const initialCharacterState: CharacterState = {
 
 export const characterReducer = createReducer(
   initialCharacterState,
-  on(CharacterActions.LocalSaveCharacter, (state, action) =>  ({
-      name: action.name,
-      view: action.view
-    })
-  ),
+  on(CharacterActions.createCharacter, (state, action) => action.payload),
+  on(CharacterActions.updateCurrentCharacterStore, (state, action) => action.payload),
 );

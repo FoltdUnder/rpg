@@ -4,24 +4,26 @@ import {createEntityAdapter, EntityState} from '@ngrx/entity';
 import {Character} from '../character.model';
 
 
-export const characterListFeatureKey = 'character-list';
+export const characterListFeatureKey = 'characterList';
 
 export interface CharacterListState extends EntityState<Character>{
-  araCharacterListLoaded: boolean;
+  areCharacterListLoaded: boolean;
 }
 
 export const adapter = createEntityAdapter<Character>();
 
 export const initialCharacterListState = adapter.getInitialState({
-  araCharacterListLoaded: false
+  areCharacterListLoaded: false
 });
 
 export const characterListReducer = createReducer(
   initialCharacterListState,
   on(CharacterListActions.characterListLoaded, (state, action) => {
-    return adapter.addMany(action.characterList, {...state, araCharacterListLoaded: true})
-  }
-  ),
+    return adapter.addMany(action.characterList, {...state, areCharacterListLoaded: true})
+  }),
+  on(CharacterListActions.addNewCharacter, (state, action) => {
+    return adapter.addOne(action.payload, state)
+  })
 );
 
 export const {selectAll} = adapter.getSelectors();

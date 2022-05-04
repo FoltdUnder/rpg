@@ -11,11 +11,10 @@ const routes: Routes = [
     path: 'list',
     loadChildren: () => import('./character-list/character-list.module').then(m => m.CharacterListModule),
   },
-
-  // {
-  //   path: '**',
-  //   redirectTo: 'list'
-  // }
+  {
+    path: '**',
+    redirectTo: 'list'
+  }
 ];
 
 @NgModule({

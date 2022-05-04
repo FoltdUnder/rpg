@@ -10,5 +10,10 @@ export const characterListLoaded = createAction(
   props<{characterList: Character[]}>()
 );
 
+export const addNewCharacter = createAction(
+  '[Character builder Page] add new character',
+  props<{payload: Character}>()
+);
+
 
 

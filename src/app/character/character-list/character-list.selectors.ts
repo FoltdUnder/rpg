@@ -4,7 +4,7 @@ import * as fromCharacterList from './character-list.reducer';
 
 
 export const selectCharacterListState =
-  createFeatureSelector<CharacterListState>('character-list');
+  createFeatureSelector<CharacterListState>('characterList');
 
 export const selectCharacterList = createSelector(
   selectCharacterListState,
@@ -13,6 +13,6 @@ export const selectCharacterList = createSelector(
 
 export const areCharacterListLoaded = createSelector(
   selectCharacterListState,
-  state => state.araCharacterListLoaded
+  state => state.areCharacterListLoaded
 );
 

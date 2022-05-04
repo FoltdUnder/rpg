@@ -2,7 +2,16 @@ import {createAction, props} from "@ngrx/store";
 import {Character} from "./character.model";
 
 
-export const LocalSaveCharacter = createAction(
-  '[Character builder page] Local Save Character',
-  props<Character>()
+export const updateCurrentCharacterStore = createAction(
+  '[Character builder page] Update Current Character',
+  props<{payload: Character}>()
+);
+
+export const createCharacter = createAction(
+  '[Character builder page] Create Character',
+  props<{payload: Character}>()
+);
+
+export const updateCharacterList = createAction(
+  '[Character builder page] Update Character List'
 );

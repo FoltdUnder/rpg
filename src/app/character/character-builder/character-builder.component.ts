@@ -1,10 +1,13 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import {BODIES, CharacterView, EYE_COLORS, FOOTS, HATS, LEGS} from '../character.model';
+import {BODIES, Character, EYE_COLORS, FOOTS, HATS, LEGS} from '../character.model';
 import {select, Store} from '@ngrx/store';
 import {CharacterActions} from '../action-types';
 import {CharacterState} from '../reducers';
-import {selectCharacterState, selectCharacterView} from '../character.selectors';
+import {selectCharacterState} from '../character.selectors';
+import {CharacterHttpService} from '../services/character-http.service';
+import {Subject, takeUntil, tap} from 'rxjs';
+import {selectCharacterList} from '../character-list/character-list.selectors';
 
 @Component({
   selector: 'app-character-builder',
@@ -20,7 +23,8 @@ export class CharacterBuilderComponent implements OnInit {
   readonly foots = FOOTS;
   form!: FormGroup;
   constructor(private formBuilder: FormBuilder,
-              public store: Store<CharacterState>) {
+              private characterHttpService: CharacterHttpService,
+              private store: Store<CharacterState>) {
   }
 
   ngOnInit() {
@@ -35,21 +39,22 @@ export class CharacterBuilderComponent implements OnInit {
       })
     })
     const storeSubscription = this.store.pipe(select(selectCharacterState)).subscribe((characterState) => {
-      console.log(characterState)
       this.form.patchValue(characterState)
     });
     storeSubscription.unsubscribe();
   }
 
   onSubmit() {
-    let {name, view} = this.form.value;
-    console.log(name, view);
-    this.store.dispatch(
-      CharacterActions.LocalSaveCharacter({
-        name: this.form.controls['name'].value,
-        view: this.form.get('view')?.value
-      })
-    )
+    const destroy$ = new Subject();
+    let newCharacterId = 0;
+    this.store.pipe(select(selectCharacterList)).pipe(
+      takeUntil(destroy$)
+    ).subscribe((characterList) => {
+      newCharacterId = ++characterList.length;
+      destroy$.next(null);
+      destroy$.complete();
+    })
+    this.store.dispatch(CharacterActions.createCharacter({payload: {...this.getCharacter(), id: newCharacterId}}));
   }
 
   randomizeCharacter() {
@@ -62,5 +67,15 @@ export class CharacterBuilderComponent implements OnInit {
         foot: this.foots[Math.floor(Math.random() * this.foots.length)],
       }
     });
+    this.store.dispatch(
+      CharacterActions.updateCurrentCharacterStore({payload: this.getCharacter()})
+    );
+  }
+
+  private getCharacter(): Character {
+    return {
+      name: this.form.controls['name'].value,
+      view: this.form.get('view')?.value
+    }
   }
 }
