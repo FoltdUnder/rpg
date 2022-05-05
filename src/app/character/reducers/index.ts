@@ -2,28 +2,42 @@ import {
   createReducer,
   on
 } from '@ngrx/store';
-import {Character} from '../character.model';
+import {Character, CharacterBuilder} from '../character.model';
 import {CharacterActions} from '../action-types';
+import {CharacterBuilderActions} from '../character-builder/action-types';
 
 export const characterFeatureKey = 'character';
 
-export interface CharacterState extends Character{
+export interface CharacterState {
+  characterBuilder: CharacterBuilder
+  currentCharacter: Character
 }
 
 export const initialCharacterState: CharacterState = {
-  name: 'noname',
-  view: {
-    hat: 'none',
-    eyeColor: 'none',
-    body: 'none',
-    legs: 'none',
-    foot: 'none',
+  currentCharacter: {
+    name: 'noname',
+    view: {
+      hat: 'none',
+      eyeColor: 'none',
+      body: 'none',
+      legs: 'none',
+      foot: 'none',
+    },
+  },
+
+  characterBuilder: {
+    hats: [],
+    eyeColors: [],
+    bodies: [],
+    legs: [],
+    foots: [],
   }
 }
 
 
 export const characterReducer = createReducer(
   initialCharacterState,
-  on(CharacterActions.createCharacter, (state, action) => action.payload),
-  on(CharacterActions.updateCurrentCharacterStore, (state, action) => action.payload),
+  on(CharacterActions.createCharacter, (state, action) => ({...state, currentCharacter: action.payload})),
+  on(CharacterActions.updateCurrentCharacterStore, (state, action) => ({...state, currentCharacter: action.payload})),
+  on(CharacterBuilderActions.loadCharacterBuilderSuccess, (state, action) => ({...state, characterBuilder: action.payload})),
 );
