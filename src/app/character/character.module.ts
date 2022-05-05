@@ -9,8 +9,7 @@ import {ControlsModule} from '../controls/controls.module';
 import {CharacterBuilderComponent} from './character-builder/character-builder.component';
 import {TuiInputModule} from '@taiga-ui/kit';
 import {CharacterViewModule} from './character-view/character-view.module';
-import { EffectsModule } from '@ngrx/effects';
-import { CharacterEffects } from './character.effects';
+import {CharacterListModule} from './character-list/character-list.module';
 
 
 @NgModule({
@@ -27,7 +26,7 @@ import { CharacterEffects } from './character.effects';
     StoreModule.forFeature(fromCharacter.characterFeatureKey, fromCharacter.characterReducer),
     TuiInputModule,
     CharacterViewModule,
-    EffectsModule.forFeature([CharacterEffects])
+    CharacterListModule
   ]
 })
 export class CharacterModule { }
