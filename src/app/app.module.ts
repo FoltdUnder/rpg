@@ -17,6 +17,8 @@ import {AuthGuard} from './auth/auth.guard';
 import {EffectsModule} from '@ngrx/effects';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {AuthInterceptor} from './auth.interceptor';
+import {CharacterListEffects} from './character/character-list/character-list.effects';
+import {CharacterBuilderEffects} from './character/character-builder/character-builder.effects';
 
 const routes: Routes = [
   {
@@ -54,7 +56,7 @@ const routes: Routes = [
     BrowserAnimationsModule,
     TuiDialogModule,
     StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot([CharacterListEffects, CharacterBuilderEffects]),
     TuiSvgModule,
     AuthModule
   ],

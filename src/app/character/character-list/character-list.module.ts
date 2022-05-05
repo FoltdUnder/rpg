@@ -3,9 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { CharacterListRoutingModule } from './character-list-routing.module';
 import {StoreModule} from '@ngrx/store';
-import * as fromCharacter from './character-list.reducer';
-import {EffectsModule} from '@ngrx/effects';
-import {CharacterListEffects} from './character-list.effects';
+import * as fromCharacterList from './character-list.reducer';
 import {CharacterListComponent} from './character-list.component';
 import { CharacterCardComponent } from './character-card/character-card.component';
 import {CharacterViewModule} from '../character-view/character-view.module';
@@ -19,8 +17,7 @@ import {TuiButtonModule} from '@taiga-ui/core';
     imports: [
         CommonModule,
         CharacterListRoutingModule,
-        StoreModule.forFeature(fromCharacter.characterListFeatureKey, fromCharacter.characterListReducer),
-        EffectsModule.forFeature([CharacterListEffects]),
+        StoreModule.forFeature(fromCharacterList.characterListFeatureKey, fromCharacterList.characterListReducer),
         CharacterViewModule,
         TuiButtonModule
     ]
