@@ -19,6 +19,7 @@ import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {AuthInterceptor} from './auth.interceptor';
 import {CharacterListEffects} from './character/character-list/character-list.effects';
 import {CharacterBuilderEffects} from './character/character-builder/character-builder.effects';
+import {InitialResolver} from '../initial.resolver';
 
 const routes: Routes = [
   {
@@ -28,7 +29,8 @@ const routes: Routes = [
   {
     path: 'character',
     loadChildren: () => import('./character/character.module').then(m => m.CharacterModule),
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    resolve: [InitialResolver]
   },
   {
     path: '**',
