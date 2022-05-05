@@ -22,9 +22,6 @@ export class AppComponent implements OnInit{
       this.store.dispatch(AuthActions.loginSuccess({user: JSON.parse(userProfile)}));
     }
 
-    this.isLoggedIn$ = this.store
-      .pipe(
-        select(isLoggedIn)
-      );
+    this.isLoggedIn$ = this.store.pipe(select(isLoggedIn));
   }
 }
