@@ -3,7 +3,6 @@ import {select, Store} from '@ngrx/store';
 import {selectCharacterList} from './character-list.selectors';
 import {Observable} from 'rxjs';
 import {Character} from '../character.model';
-import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-character-list',
@@ -12,14 +11,9 @@ import {Router} from '@angular/router';
 })
 export class CharacterListComponent implements OnInit {
   characterList$ = new Observable<Character[]>();
-  constructor(private store: Store,
-              private router: Router) { }
+  constructor(private store: Store) { }
 
   ngOnInit(): void {
     this.characterList$ = this.store.pipe(select(selectCharacterList));
-  }
-
-  createCharacter() {
-    this.router.navigateByUrl('create');
   }
 }

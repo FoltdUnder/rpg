@@ -7,19 +7,19 @@ import * as fromCharacterList from './character-list.reducer';
 import {CharacterListComponent} from './character-list.component';
 import { CharacterCardComponent } from './character-card/character-card.component';
 import {CharacterViewModule} from '../character-view/character-view.module';
-import {TuiButtonModule} from '@taiga-ui/core';
+import {TuiLinkModule} from '@taiga-ui/core';
 
 @NgModule({
   declarations: [
     CharacterListComponent,
     CharacterCardComponent
   ],
-    imports: [
-        CommonModule,
-        CharacterListRoutingModule,
-        StoreModule.forFeature(fromCharacterList.characterListFeatureKey, fromCharacterList.characterListReducer),
-        CharacterViewModule,
-        TuiButtonModule
-    ]
+  imports: [
+    CommonModule,
+    CharacterListRoutingModule,
+    StoreModule.forFeature(fromCharacterList.characterListFeatureKey, fromCharacterList.characterListReducer),
+    CharacterViewModule,
+    TuiLinkModule
+  ]
 })
 export class CharacterListModule { }
