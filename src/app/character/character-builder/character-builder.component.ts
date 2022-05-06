@@ -10,7 +10,7 @@ import {
   selectCharacterById,
   selectTotalCharacters
 } from '../character-list/character-list.selectors';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {selectCharacterBuilder} from '../character.selectors';
 
 @Component({
@@ -26,6 +26,7 @@ export class CharacterBuilderComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private characterHttpService: CharacterHttpService,
               private store: Store<CharacterState>,
+              private router: Router,
               private activatedRoute: ActivatedRoute) {
   }
 
@@ -56,11 +57,12 @@ export class CharacterBuilderComponent implements OnInit {
     this.store.pipe(select(selectTotalCharacters)).pipe(
       takeUntil(destroy$)
     ).subscribe((total) => {
-      newCharacterId = total;
+      newCharacterId = ++total;
       destroy$.next(null);
       destroy$.complete();
     })
     this.store.dispatch(CharacterActions.createCharacter({payload: {...this.getCharacter(), id: newCharacterId}}));
+    this.router.navigateByUrl('/list');
   }
 
   randomizeCharacter() {
