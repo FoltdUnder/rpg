@@ -7,17 +7,16 @@
         type="text"
       />
     </tui-input>
-    <ng-container formGroupName="view">
-      <app-carousel formControlName="hat" [itemList]="hats" [value]="form.get(['view', 'hat'])?.value"></app-carousel>
-      <app-carousel formControlName="eyeColor" [itemList]="eyeColors" [value]="form.get(['view', 'eyeColor'])?.value"></app-carousel>
-      <app-carousel formControlName="body" [itemList]="bodies" [value]="form.get(['view', 'body'])?.value"></app-carousel>
-      <app-carousel formControlName="legs" [itemList]="legs" [value]="form.get(['view', 'legs'])?.value"></app-carousel>
-      <app-carousel formControlName="foot" [itemList]="foots" [value]="form.get(['view', 'foot'])?.value"></app-carousel>
+    <ng-container formGroupName="view" *ngIf="characterBuilderOptions | async as characterBuilder">
+      <app-carousel formControlName="hat" [itemList]="characterBuilder.hats" [value]="form.get(['view', 'hat'])?.value"></app-carousel>
+      <app-carousel formControlName="eyeColor" [itemList]="characterBuilder.eyeColors" [value]="form.get(['view', 'eyeColor'])?.value"></app-carousel>
+      <app-carousel formControlName="body" [itemList]="characterBuilder.bodies" [value]="form.get(['view', 'body'])?.value"></app-carousel>
+      <app-carousel formControlName="legs" [itemList]="characterBuilder.legs" [value]="form.get(['view', 'legs'])?.value"></app-carousel>
+      <app-carousel formControlName="foot" [itemList]="characterBuilder.foots" [value]="form.get(['view', 'foot'])?.value"></app-carousel>
     </ng-container>
     <button type="submit" [disabled]="!form.valid" >Submit</button>
     <button type="button" (click)="randomizeCharacter()">Random</button>
   </form>
-
   <app-character-view class="characterBuildPage__view" [view]="form.get('view')?.value"></app-character-view>
 </div>
 

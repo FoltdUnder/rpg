@@ -15,6 +15,12 @@ export const selectCharacterView = createSelector(
   state => state.currentCharacter.view
 )
 
-// export const isCharacterBuilderLoaded = createSelector(
-//   state => state['character']
-// );
+export const areCharacterBuilderLoaded = createSelector(
+  selectCharacterState,
+  state => state.areCharacterBuilderLoaded
+);
+
+export const selectCharacterBuilder = createSelector(
+  selectCharacterState,
+  state => state.characterBuilder
+);

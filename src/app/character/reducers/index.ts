@@ -10,7 +10,8 @@ export const characterFeatureKey = 'character';
 
 export interface CharacterState {
   characterBuilder: CharacterBuilder
-  currentCharacter: Character
+  currentCharacter: Character,
+  areCharacterBuilderLoaded: boolean;
 }
 
 export const initialCharacterState: CharacterState = {
@@ -31,7 +32,8 @@ export const initialCharacterState: CharacterState = {
     bodies: [],
     legs: [],
     foots: [],
-  }
+  },
+  areCharacterBuilderLoaded: false
 }
 
 
@@ -39,5 +41,9 @@ export const characterReducer = createReducer(
   initialCharacterState,
   on(CharacterActions.createCharacter, (state, action) => ({...state, currentCharacter: action.payload})),
   on(CharacterActions.updateCurrentCharacterStore, (state, action) => ({...state, currentCharacter: action.payload})),
-  on(CharacterBuilderActions.loadCharacterBuilderSuccess, (state, action) => ({...state, characterBuilder: action.payload})),
+  on(CharacterBuilderActions.loadCharacterBuilderSuccess, (state, action) => ({
+    ...state,
+    characterBuilder: {...action.payload},
+    areCharacterBuilderLoaded: true
+  })),
 );
