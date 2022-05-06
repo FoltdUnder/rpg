@@ -34,10 +34,10 @@ export function getCharacterBuilder(req: Request, res: Response) {
   console.log('Retrieving character builder data...');
 
   res.status(200).json({
-    hat: HATS,
-    eyeColor: EYE_COLORS,
-    body: BODIES,
+    hats: HATS,
+    eyeColors: EYE_COLORS,
+    bodies: BODIES,
     legs: LEGS,
-    foot: FOOTS
+    foots: FOOTS
   })
 }
