@@ -1,7 +1,7 @@
 <tui-root>
   <app-menu *ngIf="isLoggedIn$ | async"></app-menu>
-
   <div class="content">
+    <div *ngIf="loading">LOADING...</div>
     <router-outlet></router-outlet>
   </div>
 

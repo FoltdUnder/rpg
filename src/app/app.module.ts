@@ -19,7 +19,7 @@ import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {AuthInterceptor} from './auth.interceptor';
 import {CharacterListEffects} from './character/character-list/character-list.effects';
 import {CharacterBuilderEffects} from './character/character-builder/character-builder.effects';
-import {InitialResolver} from '../initial.resolver';
+import {InitialResolver} from './initial.resolver';
 
 const routes: Routes = [
   {
