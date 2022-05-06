@@ -10,14 +10,14 @@ import {Character} from './character.model';
 @Injectable()
 export class CharacterEffects {
 
-  saveCharacter$ = createEffect(
+  createCharacter$ = createEffect(
     () => {
       return this.actions$.pipe(
         ofType(CharacterActions.createCharacter),
         map(action => action.payload),
         concatMap((character) => this.characterHttpService.createCharacter(character)
           .pipe(
-            map(() => CharacterListActions.addNewCharacter({payload: character}))
+            map(() => CharacterListActions.addCharacter({payload: character}))
           )),
       )
     }

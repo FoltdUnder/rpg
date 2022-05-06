@@ -18,10 +18,10 @@ export const initialCharacterListState = characterEntityAdapter.getInitialState(
 
 export const characterListReducer = createReducer(
   initialCharacterListState,
-  on(CharacterListActions.characterListLoaded, (state, action) => {
+  on(CharacterListActions.loadCharacterListSuccess, (state, action) => {
     return characterEntityAdapter.addMany(action.characterList, {...state, areCharacterListLoaded: true})
   }),
-  on(CharacterListActions.addNewCharacter, (state, action) => {
+  on(CharacterListActions.addCharacter, (state, action) => {
     return characterEntityAdapter.addOne(action.payload, state)
   }),
 );

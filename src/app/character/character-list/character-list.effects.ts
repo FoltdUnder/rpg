@@ -13,7 +13,7 @@ export class CharacterListEffects {
       ofType(CharacterListActions.loadCharacterList),
       concatMap(action => this.characterHttpService.getCharacterList()),
       map(characterList => {
-        return CharacterListActions.characterListLoaded({characterList})
+        return CharacterListActions.loadCharacterListSuccess({characterList})
       })
     )
   )

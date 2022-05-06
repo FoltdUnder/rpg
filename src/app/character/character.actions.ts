@@ -8,10 +8,6 @@ export const updateCurrentCharacterStore = createAction(
 );
 
 export const createCharacter = createAction(
-  '[Character builder page] Create Character',
+  '[Character Create page] Create Character',
   props<{payload: Character}>()
-);
-
-export const updateCharacterList = createAction(
-  '[Character builder page] Update Character List'
 );

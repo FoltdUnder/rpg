@@ -2,16 +2,16 @@ import { createAction, props } from '@ngrx/store';
 import {Character} from '../character.model';
 
 export const loadCharacterList = createAction(
-  '[CharacterList Page] Load CharacterList'
+  '[Initial Resolver] Load CharacterList'
 );
 
-export const characterListLoaded = createAction(
+export const loadCharacterListSuccess = createAction(
   "[Load Character List Effect] All Courses Loaded",
   props<{characterList: Character[]}>()
 );
 
-export const addNewCharacter = createAction(
-  '[Character builder Page] add new character',
+export const addCharacter = createAction(
+  '[Character Create Page] add character',
   props<{payload: Character}>()
 );
 
