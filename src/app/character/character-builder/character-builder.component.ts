@@ -52,16 +52,7 @@ export class CharacterBuilderComponent implements OnInit {
   }
 
   onSubmit() {
-    const destroy$ = new Subject();
-    let newCharacterId = 0;
-    this.store.pipe(select(selectTotalCharacters)).pipe(
-      takeUntil(destroy$)
-    ).subscribe((total) => {
-      newCharacterId = ++total;
-      destroy$.next(null);
-      destroy$.complete();
-    })
-    this.store.dispatch(CharacterActions.createCharacter({payload: {...this.getCharacter(), id: newCharacterId}}));
+    this.store.dispatch(CharacterActions.createCharacter({payload: this.getCharacter()}));
     this.router.navigateByUrl('/list');
   }
 
@@ -90,7 +81,17 @@ export class CharacterBuilderComponent implements OnInit {
   }
 
   private getCharacter(): Character {
+    const destroy$ = new Subject();
+    let newCharacterId = 0;
+    this.store.pipe(select(selectTotalCharacters)).pipe(
+      takeUntil(destroy$)
+    ).subscribe((total) => {
+      newCharacterId = ++total;
+      destroy$.next(null);
+      destroy$.complete();
+    })
     return {
+      id: newCharacterId,
       name: this.form.controls['name'].value,
       view: this.form.get('view')?.value
     }
