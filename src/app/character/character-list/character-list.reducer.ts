@@ -24,6 +24,9 @@ export const characterListReducer = createReducer(
   on(CharacterListActions.addCharacter, (state, action) => {
     return characterEntityAdapter.addOne(action.payload, state)
   }),
+  on(CharacterListActions.deleteCharacter, (state, action) => {
+    return characterEntityAdapter.removeOne(action.id, state)
+  }),
 );
 
 export const {selectAll, selectIds, selectEntities, selectTotal} = characterEntityAdapter.getSelectors();

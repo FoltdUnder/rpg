@@ -1,8 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Character} from '../../character.model';
-import {Router} from '@angular/router';
 import {Store} from '@ngrx/store';
-import {CharacterActions} from '../../action-types';
+import {CharacterListActions} from '../action-types';
 
 @Component({
   selector: 'app-character-card[character]',
@@ -22,13 +21,12 @@ export class CharacterCardComponent implements OnInit {
       foot: 'none',
     }
   };
-  constructor(private router: Router,
-              private store: Store) { }
+  constructor(private store: Store) { }
 
   ngOnInit(): void {
   }
 
-  customizeCharacter() {
-    this.router.navigateByUrl('character/' + this.character.id);
+  deleteCharacter() {
+    this.store.dispatch(CharacterListActions.deleteCharacter({id: this.character.id}))
   }
 }

@@ -15,6 +15,11 @@ export class CharacterHttpService {
       .pipe(map((res) =>  res));
   }
 
+  deleteCharacter(characterId: number): Observable<boolean> {
+    return this.httpClient.delete<boolean>('api/characters/' + characterId)
+      .pipe(map((res) =>  res));
+  }
+
   getCharacterList(): Observable<Character[]> {
     return this.httpClient.get<Character[]>('/api/characters', {
       params: new HttpParams().set('userId', JSON.parse(localStorage.getItem('user')!).id.toString())

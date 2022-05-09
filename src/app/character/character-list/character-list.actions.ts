@@ -15,5 +15,10 @@ export const addCharacter = createAction(
   props<{payload: Character}>()
 );
 
+export const deleteCharacter = createAction(
+  '[Character List Page] delete character',
+  props<{id: number}>()
+);
+
 
 

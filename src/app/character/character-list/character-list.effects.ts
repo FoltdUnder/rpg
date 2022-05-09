@@ -18,6 +18,13 @@ export class CharacterListEffects {
     )
   )
 
+  deleteCharacter$ = createEffect(
+    () => this.actions$.pipe(
+      ofType(CharacterListActions.deleteCharacter),
+      concatMap(action => this.characterHttpService.deleteCharacter(action.id))
+    ), {dispatch: false}
+  )
+
   constructor(private actions$: Actions,
               private characterHttpService: CharacterHttpService) {
   }

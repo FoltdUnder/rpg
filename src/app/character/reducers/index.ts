@@ -16,6 +16,7 @@ export interface CharacterState {
 
 export const initialCharacterState: CharacterState = {
   currentCharacter: {
+    id: 0,
     name: 'noname',
     view: {
       hat: 'none',
