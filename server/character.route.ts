@@ -1,5 +1,5 @@
 import {Request, Response} from 'express';
-import {BODIES, EYE_COLORS, FOOTS, getDbData, HATS, LEGS, setDbData} from './db-helpers';
+import {BODIES, Character, EYE_COLORS, FOOTS, getDbData, HATS, LEGS, setDbData} from './db-helpers';
 
 export function getCharacterList(req: Request, res: Response) {
   console.log("Retrieving character list data ...");
@@ -18,12 +18,11 @@ export function createCharacter(req: Request, res: Response) {
   }
   const userId = +req.headers['user-id']!;
   const USERS = getDbData();
-  const newCharacter = {
+  const newCharacter: Character = {
     ...req.body['character'],
-    id: ++Object.keys(USERS[+userId].characters).length
   };
 
-  USERS[userId].characters[newCharacter.id] = newCharacter;
+  USERS[userId].characters.push(newCharacter);
 
   setDbData(USERS);
 

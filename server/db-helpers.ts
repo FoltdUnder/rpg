@@ -4,7 +4,7 @@ interface User {
   id: number;
   login: string;
   password: string;
-  characters: {[key: number]: Character}
+  characters: Character[]
 }
 
 export interface Character {
