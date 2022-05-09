@@ -2,7 +2,7 @@ import * as express from 'express';
 import {Application} from 'express';
 
 import {loginUser} from './auth.route';
-import {createCharacter, getCharacterBuilder, getCharacterList,} from './character.route';
+import {createCharacter, deleteCharacter, getCharacterBuilder, getCharacterList,} from './character.route';
 
 const bodyParser = require('body-parser');
 
@@ -14,6 +14,8 @@ app.use(bodyParser.json());
 app.route('/api/characters').get(getCharacterList);
 
 app.route('/api/characters').post(createCharacter);
+
+app.route('/api/characters/:id').delete(deleteCharacter);
 
 app.route('/api/login').post(loginUser);
 
