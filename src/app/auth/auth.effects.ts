@@ -1,8 +1,9 @@
 import {Injectable} from '@angular/core';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
 import {AuthActions} from './action-types';
-import {tap} from 'rxjs';
+import {map, tap} from 'rxjs';
 import {Router} from '@angular/router';
+import {CharacterListActions} from '../character/character-list/action-types';
 
 @Injectable()
 export class AuthEffects {
@@ -24,9 +25,10 @@ export class AuthEffects {
           tap(action => {
             localStorage.removeItem('user');
             this.router.navigateByUrl('/login');
-          })
-        )
-    , {dispatch: false});
+          }),
+          map(() => CharacterListActions.markCharacterListNeedLoad()),
+        ),
+    );
 
   constructor(private actions$: Actions,
               private router: Router) {

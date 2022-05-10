@@ -1,4 +1,4 @@
-import { Action, createReducer, on } from '@ngrx/store';
+import { createReducer, on } from '@ngrx/store';
 import {CharacterListActions} from './action-types';
 import {createEntityAdapter, EntityState} from '@ngrx/entity';
 import {Character} from '../character.model';
@@ -30,6 +30,7 @@ export const characterListReducer = createReducer(
   on(CharacterListActions.updateCharacter, (state, action) => {
     return characterEntityAdapter.setOne(action.payload, state)
   }),
+  on(CharacterListActions.markCharacterListNeedLoad, (state) => ({...state, areCharacterListLoaded: false})),
 );
 
 export const {selectAll, selectIds, selectEntities, selectTotal} = characterEntityAdapter.getSelectors();

@@ -25,5 +25,9 @@ export const deleteCharacter = createAction(
   props<{id: number}>()
 );
 
+export const markCharacterListNeedLoad = createAction(
+  '[Logout Effect] mark characterList need to update'
+);
+
 
 
