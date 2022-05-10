@@ -2,7 +2,13 @@ import * as express from 'express';
 import {Application} from 'express';
 
 import {loginUser} from './auth.route';
-import {createCharacter, deleteCharacter, getCharacterBuilder, getCharacterList,} from './character.route';
+import {
+  createCharacter,
+  deleteCharacter,
+  getCharacterBuilder,
+  getCharacterList,
+  updateCharacter,
+} from './character.route';
 
 const bodyParser = require('body-parser');
 
@@ -16,6 +22,8 @@ app.route('/api/characters').get(getCharacterList);
 app.route('/api/characters').post(createCharacter);
 
 app.route('/api/characters/:id').delete(deleteCharacter);
+
+app.route('/api/characters/:id').patch(updateCharacter);
 
 app.route('/api/login').post(loginUser);
 

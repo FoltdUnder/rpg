@@ -47,6 +47,24 @@ export function deleteCharacter(req: Request, res: Response) {
 
 }
 
+export function updateCharacter(req: Request, res: Response) {
+  console.log('update character ...');
+
+  if (!req.headers['user-id'] || req.headers['user-id'] === '0') {
+    res.sendStatus(403);
+  }
+  const userId = +req.headers['user-id']!;
+  const newCharacter: Character = {
+    ...req.body['character'],
+  };
+  let USERS = getDbData();
+  USERS[userId].characters[newCharacter.id] = {...newCharacter}
+
+  setDbData((USERS));
+
+  res.status(200).json();
+}
+
 export function getCharacterBuilder(req: Request, res: Response) {
   console.log('Retrieving character builder data...');
 
