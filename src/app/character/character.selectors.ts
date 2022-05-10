@@ -10,9 +10,9 @@ export const selectCharacterState =
 
 
 
-export const selectCharacterView = createSelector(
+export const selectCurrentCharacter = createSelector(
   selectCharacterState,
-  state => state.currentCharacter.view
+  state => state.currentCharacter
 )
 
 export const areCharacterBuilderLoaded = createSelector(

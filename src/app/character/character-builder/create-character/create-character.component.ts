@@ -7,7 +7,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {CharacterActions} from '../../action-types';
 import {Character} from '../../character.model';
 import {Subject, takeUntil} from 'rxjs';
-import {selectTotalCharacters} from '../../character-list/character-list.selectors';
+import {selectCharacterById, selectTotalCharacters} from '../../character-list/character-list.selectors';
+import {selectCurrentCharacter} from '../../character.selectors';
 
 @Component({
   selector: 'app-create-character',
@@ -21,6 +22,17 @@ export class CreateCharacterComponent extends CharacterBuilderComponent{
               router: Router,
               activatedRoute: ActivatedRoute) {
     super(formBuilder, store, router, activatedRoute);
+  }
+
+  override ngOnInit() {
+    super.ngOnInit();
+
+    const storeSubscription = this.store.pipe(select(selectCurrentCharacter)).subscribe((character) => {
+      if (character) {
+        this.form.patchValue(character);
+      }
+    });
+    storeSubscription.unsubscribe();
   }
 
   override onSubmit() {
