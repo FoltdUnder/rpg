@@ -12,11 +12,15 @@ import {CharacterViewModule} from './character-view/character-view.module';
 import {CharacterListModule} from './character-list/character-list.module';
 import {EffectsModule} from '@ngrx/effects';
 import {CharacterEffects} from './character.effects';
+import { CreateCharacterComponent } from './character-builder/create-character/create-character.component';
+import { UpdateCharacterComponent } from './character-builder/update-character/update-character.component';
 
 
 @NgModule({
   declarations: [
     CharacterBuilderComponent,
+    CreateCharacterComponent,
+    UpdateCharacterComponent,
   ],
   exports: [],
   imports: [

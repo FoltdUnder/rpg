@@ -12,9 +12,7 @@ export class CharacterListEffects {
     () => this.actions$.pipe(
       ofType(CharacterListActions.loadCharacterList),
       concatMap(action => this.characterHttpService.getCharacterList()),
-      map(characterList => {
-        return CharacterListActions.loadCharacterListSuccess({characterList})
-      })
+      map(characterList =>  CharacterListActions.loadCharacterListSuccess({characterList}))
     )
   )
 
@@ -22,6 +20,13 @@ export class CharacterListEffects {
     () => this.actions$.pipe(
       ofType(CharacterListActions.deleteCharacter),
       concatMap(action => this.characterHttpService.deleteCharacter(action.id))
+    ), {dispatch: false}
+  )
+
+  updateCharacter$ = createEffect(
+    () => this.actions$.pipe(
+      ofType(CharacterListActions.updateCharacter),
+      concatMap(action => this.characterHttpService.updateCharacter(action.payload))
     ), {dispatch: false}
   )
 

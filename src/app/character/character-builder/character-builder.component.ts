@@ -4,7 +4,6 @@ import {Character, CharacterBuilder} from '../character.model';
 import {select, Store} from '@ngrx/store';
 import {CharacterActions} from '../action-types';
 import {CharacterState} from '../reducers';
-import {CharacterHttpService} from '../services/character-http.service';
 import {Observable, Subject, takeUntil} from 'rxjs';
 import {
   selectCharacterById,
@@ -22,12 +21,12 @@ import {selectCharacterBuilder} from '../character.selectors';
 export class CharacterBuilderComponent implements OnInit {
   form!: FormGroup;
   characterBuilderOptions = new Observable<CharacterBuilder>();
+  characterId = 0;
 
-  constructor(private formBuilder: FormBuilder,
-              private characterHttpService: CharacterHttpService,
-              private store: Store<CharacterState>,
-              private router: Router,
-              private activatedRoute: ActivatedRoute) {
+  constructor(protected formBuilder: FormBuilder,
+              protected store: Store<CharacterState>,
+              protected router: Router,
+              protected activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit() {
@@ -41,9 +40,9 @@ export class CharacterBuilderComponent implements OnInit {
         legs: 'none',
         foot: 'none'
       })
-    })
-    const characterId = this.activatedRoute.snapshot.params['id'];
-    const storeSubscription = this.store.pipe(select(selectCharacterById(characterId))).subscribe((character) => {
+    });
+    this.characterId = +this.activatedRoute.snapshot.params['id'];
+    const storeSubscription = this.store.pipe(select(selectCharacterById(this.characterId))).subscribe((character) => {
       if (character) {
         this.form.patchValue(character);
       }
@@ -52,7 +51,6 @@ export class CharacterBuilderComponent implements OnInit {
   }
 
   onSubmit() {
-    this.store.dispatch(CharacterActions.createCharacter({payload: this.getCharacter()}));
     this.router.navigateByUrl('/list');
   }
 
@@ -80,18 +78,9 @@ export class CharacterBuilderComponent implements OnInit {
       });
   }
 
-  private getCharacter(): Character {
-    const destroy$ = new Subject();
-    let newCharacterId = 0;
-    this.store.pipe(select(selectTotalCharacters)).pipe(
-      takeUntil(destroy$)
-    ).subscribe((total) => {
-      newCharacterId = ++total;
-      destroy$.next(null);
-      destroy$.complete();
-    })
+  protected getCharacter(): Character {
     return {
-      id: newCharacterId,
+      id: this.characterId,
       name: this.form.controls['name'].value,
       view: this.form.get('view')?.value
     }

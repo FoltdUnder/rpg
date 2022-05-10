@@ -20,6 +20,11 @@ export class CharacterHttpService {
       .pipe(map((res) =>  res));
   }
 
+  updateCharacter(character: Character): Observable<boolean> {
+    return this.httpClient.patch<boolean>('api/characters/' + character.id, {character: character})
+      .pipe(map((res) =>  res));
+  }
+
   getCharacterList(): Observable<Character[]> {
     return this.httpClient.get<Character[]>('/api/characters', {
       params: new HttpParams().set('userId', JSON.parse(localStorage.getItem('user')!).id.toString())

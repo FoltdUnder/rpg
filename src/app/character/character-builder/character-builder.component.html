@@ -14,7 +14,7 @@
       <app-carousel formControlName="legs" [itemList]="characterBuilder.legs" [value]="form.get(['view', 'legs'])?.value"></app-carousel>
       <app-carousel formControlName="foot" [itemList]="characterBuilder.foots" [value]="form.get(['view', 'foot'])?.value"></app-carousel>
     </ng-container>
-    <button type="submit" [disabled]="!form.valid" >Submit</button>
+    <button type="submit" [disabled]="!form.valid">Submit</button>
     <button type="button" (click)="randomizeCharacter()">Random</button>
   </form>
   <app-character-view class="characterBuildPage__view" [view]="form.get('view')?.value"></app-character-view>

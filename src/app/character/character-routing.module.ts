@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {CharacterBuilderComponent} from './character-builder/character-builder.component';
 import {CharacterListComponent} from './character-list/character-list.component';
+import {CreateCharacterComponent} from './character-builder/create-character/create-character.component';
+import {UpdateCharacterComponent} from './character-builder/update-character/update-character.component';
 
 const routes: Routes = [
   {
@@ -10,11 +11,11 @@ const routes: Routes = [
   },
   {
     path: 'create',
-    component: CharacterBuilderComponent
+    component: CreateCharacterComponent
   },
   {
     path: ':id',
-    component: CharacterBuilderComponent
+    component: UpdateCharacterComponent
   },
   {
     path: '**',
