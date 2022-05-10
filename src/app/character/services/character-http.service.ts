@@ -26,9 +26,7 @@ export class CharacterHttpService {
   }
 
   getCharacterList(): Observable<Character[]> {
-    return this.httpClient.get<Character[]>('/api/characters', {
-      params: new HttpParams().set('userId', JSON.parse(localStorage.getItem('user')!).id.toString())
-    })
+    return this.httpClient.get<Character[]>('/api/characters')
       .pipe(map((res) => res));
   }
 

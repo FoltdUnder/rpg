@@ -4,7 +4,8 @@ import {BODIES, Character, EYE_COLORS, FOOTS, getDbData, HATS, LEGS, setDbData} 
 export function getCharacterList(req: Request, res: Response) {
   console.log("Retrieving character list data ...");
 
-  const userId: number = +(req.query['userId'] as string);
+  const userId = +req.headers['user-id']!;
+
   setTimeout(() => {
     res.status(200).json(Object.values(getDbData()[userId].characters));
   }, 1000);
