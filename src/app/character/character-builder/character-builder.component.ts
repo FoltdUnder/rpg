@@ -5,10 +5,6 @@ import {select, Store} from '@ngrx/store';
 import {CharacterActions} from '../action-types';
 import {CharacterState} from '../reducers';
 import {Observable, Subject, takeUntil} from 'rxjs';
-import {
-  selectCharacterById,
-  selectTotalCharacters
-} from '../character-list/character-list.selectors';
 import {ActivatedRoute, Router} from '@angular/router';
 import {selectCharacterBuilder} from '../character.selectors';
 
@@ -29,7 +25,7 @@ export class CharacterBuilderComponent implements OnInit {
               protected activatedRoute: ActivatedRoute) {
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.characterBuilderOptions = this.store.pipe(select(selectCharacterBuilder));
     this.form = this.formBuilder.group({
       name: '',
@@ -43,11 +39,11 @@ export class CharacterBuilderComponent implements OnInit {
     });
   }
 
-  onSubmit() {
+  onSubmit(): void {
     this.router.navigateByUrl('/list');
   }
 
-  randomizeCharacter() {
+  randomizeCharacter(): void {
     const destroy$ = new Subject();
 
     this.characterBuilderOptions.pipe(takeUntil(destroy$))

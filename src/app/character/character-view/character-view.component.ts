@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
 import {CharacterView} from '../character.model';
 
 @Component({
@@ -7,7 +7,7 @@ import {CharacterView} from '../character.model';
   styleUrls: ['./character-view.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CharacterViewComponent implements OnInit {
+export class CharacterViewComponent {
   readonly spritePath = '/assets/sprites/character-builder-sprite.svg#';
   @Input() view: CharacterView = {
     body: 'none',
@@ -19,8 +19,4 @@ export class CharacterViewComponent implements OnInit {
 
   constructor() {
   }
-
-  ngOnInit(): void {
-  }
-
 }

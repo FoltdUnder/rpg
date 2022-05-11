@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {Character} from '../../character.model';
 import {Store} from '@ngrx/store';
 import {CharacterListActions} from '../action-types';
@@ -8,7 +8,7 @@ import {CharacterListActions} from '../action-types';
   templateUrl: './character-card.component.html',
   styleUrls: ['./character-card.component.scss']
 })
-export class CharacterCardComponent implements OnInit {
+export class CharacterCardComponent {
 
   @Input() character: Character = {
     id: 0,
@@ -22,9 +22,6 @@ export class CharacterCardComponent implements OnInit {
     }
   };
   constructor(private store: Store) { }
-
-  ngOnInit(): void {
-  }
 
   deleteCharacter() {
     this.store.dispatch(CharacterListActions.deleteCharacter({id: this.character.id}))

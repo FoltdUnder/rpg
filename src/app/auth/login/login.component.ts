@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  onSubmit() {
+  onSubmit(): void {
     const {login, password} = this.form.value;
     this.authService.login(login, password).pipe(
       tap(user => {
