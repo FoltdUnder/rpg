@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpParams} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {map, Observable} from 'rxjs';
 import {Character, CharacterBuilder} from '../character.model';
 
@@ -26,12 +26,12 @@ export class CharacterHttpService {
   }
 
   getCharacterList(): Observable<Character[]> {
-    return this.httpClient.get<Character[]>('/api/characters')
+    return this.httpClient.get<Character[]>('api/characters')
       .pipe(map((res) => res));
   }
 
   getCharacterBuilder(): Observable<CharacterBuilder> {
-    return this.httpClient.get<CharacterBuilder>('/api/builder')
+    return this.httpClient.get<CharacterBuilder>('api/builder')
       .pipe(map(res => res));
   }
 }
