@@ -1,6 +1,7 @@
 <div class="characterCard">
   <div class="characterCard__left">
-    <h3 class="characterCard__info">{{character.id}}:{{character.name}}</h3>
+    <h3 class="characterCard__info">id: {{character.id}} </h3>
+    <div class="characterCard__info">name: {{character.name}}</div>
     <div class="characterCard__controls controls">
       <a tuiLink
          routerLink="/character/{{character.id}}"
@@ -9,6 +10,8 @@
       >Customize
       </a>
       <button
+        size="s"
+        tuiButton
         (click)="deleteCharacter()"
       >Delete
       </button>
